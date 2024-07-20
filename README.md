@@ -8,6 +8,7 @@ git clone git@github.com:managepy-datalouna/kmb_frontend.git
 sqlite3 base.db < kmb_backend/schema.sql
 
 cd kmb_backend
+poetry env use python3.10
 poetry install
 poetry run uvicorn main:app --reload
 ```
