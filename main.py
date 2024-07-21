@@ -82,11 +82,11 @@ def read_player(player_id: int, db: Session = Depends(get_db)):
     # db.refresh(db_player)
     # return db_player
 
-# @app.delete("/players/{player_id}", response_model=Player)
-# def delete_player(player_id: int, db: Session = Depends(get_db)):
-    # player = db.query(PlayerModel).filter(PlayerModel.id == player_id).first()
-    # if player is None:
-        # raise HTTPException(status_code=404, detail="Player not found")
-    # db.delete(player)
-    # db.commit()
-    # return player
+@app.delete("/players/{player_id}", response_model=Player)
+def delete_player(player_id: int, db: Session = Depends(get_db)):
+    player = db.query(PlayerModel).filter(PlayerModel.id == player_id).first()
+    if player is None:
+        raise HTTPException(status_code=404, detail="Player not found")
+    db.delete(player)
+    db.commit()
+    return player
